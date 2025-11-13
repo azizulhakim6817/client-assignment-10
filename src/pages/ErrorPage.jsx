@@ -5,7 +5,6 @@ const ErrorPage = () => {
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-r from-yellow-100 via-yellow-200 to-yellow-300 p-6">
-      {/* Error message */}
       <h1 className="text-xl  md:text-3xl  font-bold text-yellow-700 mb-4 animate-bounce text-center">
         Oops! Something went wrong
       </h1>
