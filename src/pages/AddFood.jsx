@@ -2,8 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 
 import CalendarIcon from "../component/CalendarIcon ";
-import { toast } from 'react-toastify';
-
+import { toast } from "react-toastify";
 
 const AddFood = () => {
   const [expireDate, setExpireDate] = useState(null);
@@ -137,7 +136,7 @@ const AddFood = () => {
             placeholder="Available"
             defaultValue="Available"
           />
-
+          {/* create food */}
           <button
             type="submit"
             className="btn font-bold text-[16px] bg-yellow-400 text-black mt-4 w-full"
