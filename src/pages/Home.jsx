@@ -16,10 +16,10 @@ const Home = () => {
 
   return (
     <div>
-      {/* Banner Section */}
+      {/* Banner Section-----------*/}
       <Header />
 
-      {/* Featured Foods */}
+      {/* Featured Foods--------*/}
       <section className="bg-gray-100 p-4 md:p-10">
         <h2 className="text-2xl font-bold mb-10 text-center text-gray-700">
           Featured Foods
