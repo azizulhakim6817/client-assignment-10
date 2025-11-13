@@ -1,17 +1,31 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../context/AuthContext";
 import { FiLogOut } from "react-icons/fi";
-import { toast } from "react-toastify";
+import { MdAddCircle, MdManageHistory } from "react-icons/md";
+import { FaRegWindowRestore } from "react-icons/fa6";
+import { IoIosArrowDown } from "react-icons/io";
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
-
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   const logoutUser = () => {
     signOutUser();
-    toast.sucess("Logout successfull");
+    setIsOpen(false);
   };
+
+  // Close dropdown when clicked outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, []);
 
   const links = (
     <>
@@ -87,7 +101,7 @@ const Navbar = () => {
       </div>
 
       {/* Right side */}
-      <div className="navbar-end">
+      <div className="navbar-end relative" ref={dropdownRef}>
         {!user ? (
           <Link
             to="/login"
@@ -96,48 +110,65 @@ const Navbar = () => {
             Login
           </Link>
         ) : (
-          <details className="dropdown dropdown-end">
-            <summary className="m-1 flex items-center gap-2 rounded">
-              {user?.photoURL ? (
-                <img
-                  src={user.photoURL}
-                  alt={user?.displayName || "Profile"}
-                  className="w-8 h-8 rounded-full"
-                />
-              ) : (
-                <span className="font-bold">
-                  {user?.displayName || "Profile"}
-                </span>
-              )}
-            </summary>
+          <div className="relative">
+            <button
+              onClick={() => setIsOpen((prev) => !prev)}
+              className="flex items-center gap-2 cursor-pointer rounded-full px-2 py-1 hover:bg-gray-100 transition-all duration-200"
+            >
+              <img
+                src={user?.photoURL}
+                alt={user?.displayName || "User"}
+                className="relative w-12 h-12 rounded-full border border-gray-300 object-cover"
+              />
 
-            <ul className="menu dropdown-content bg-base-100 rounded-box z-50 w-52 p-2 shadow-sm mt-2">
-              <li>
-                <NavLink to="add-food" className="font-semibold">
-                  Add Food
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="manage-my-foods" className="font-semibold">
-                  Manage My Foods
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="my-food-requests" className="font-semibold">
-                  My Food Requests
-                </NavLink>
-              </li>
-              <li>
-                <button
-                  onClick={logoutUser}
-                  className="font-semibold w-full text-left flex items-center gap-2 text-rose-600"
-                >
-                  <FiLogOut size={18} />
-                  Logout
-                </button>
-              </li>
-            </ul>
-          </details>
+              <IoIosArrowDown
+                size={28}
+                className={` absolute -right-1 text-gray-600 transition-transform duration-200 ${
+                  isOpen ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+
+            {isOpen && (
+              <ul className=" space-y-2 absolute right-0 mt-3 bg-base-100 rounded-box w-52 p-2 shadow z-50">
+                <li>
+                  <NavLink
+                    to="add-food"
+                    className="font-semibold flex justify-start gap-2 items-center"
+                  >
+                    <MdAddCircle size={16} className="text-black" /> Add Food
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="manage-my-foods"
+                    className="font-semibold flex justify-start gap-2 items-center"
+                  >
+                    <MdManageHistory size={18} className="text-black" /> Manage
+                    My Foods
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="my-food-rquests"
+                    className="font-semibold flex justify-start gap-2 items-center"
+                  >
+                    <FaRegWindowRestore size={16} className="text-black" /> My
+                    Food Requests
+                  </NavLink>
+                </li>
+                <li>
+                  <button
+                    onClick={logoutUser}
+                    className="font-semibold w-full text-left flex items-center gap-2 text-rose-600"
+                  >
+                    <FiLogOut size={18} />
+                    Logout
+                  </button>
+                </li>
+              </ul>
+            )}
+          </div>
         )}
       </div>
     </div>

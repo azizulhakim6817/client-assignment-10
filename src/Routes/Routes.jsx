@@ -1,17 +1,15 @@
 import { createBrowserRouter } from "react-router";
 import MainLayout from "../layout/MainLayout";
 import Home from "../pages/Home";
-import AvailableFoods from "../pages/AvailableFoods";
-import AddFood from "../pages/AddFood";
-import ManageMyFoods from "../pages/ManageMyFoods";
-import MyFoodRquests from "../pages/MyFoodRquests";
-
 import NotFoundPage from "../pages/NotFoundPage";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
-
 import FoodDetails from "./../pages/FoodDetails";
 import ProtectedRoute from "./ProtectedRoute";
+import AddFood from "./../pages/AddFood";
+import AvailableFoods from "./../pages/AvailableFoods";
+import MyFoodRquests from "./../pages/MyFoodRquests";
+import ManageMyFoods from './../pages/ManageMyFoods';
 
 const route = createBrowserRouter([
   {
@@ -29,9 +27,30 @@ const route = createBrowserRouter([
         Component: Register,
       },
       { path: "available-foods", Component: AvailableFoods },
-      { path: "add-food", element: AddFood },
-      { path: "manage-my-foods", Component: ManageMyFoods },
-      { path: "my-food-rquests", Component: MyFoodRquests },
+      {
+        path: "add-food",
+        element: (
+          <ProtectedRoute>
+            <AddFood />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "manage-my-foods",
+        element: (
+          <ProtectedRoute>
+            <ManageMyFoods />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "my-food-rquests",
+        element: (
+          <ProtectedRoute>
+            <MyFoodRquests />
+          </ProtectedRoute>
+        ),
+      },
       {
         path: "food-details/:id",
         loader: async ({ params }) => {
