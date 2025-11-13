@@ -14,7 +14,8 @@ const Register = () => {
     const photo = e.target.photo.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
-    // Optional password validation (usually for register)
+    
+    // Optional password validation 
     if (password.length < 6) {
       setError("Password must be at least 6 characters long.");
       return;
@@ -41,7 +42,7 @@ const Register = () => {
       });
   };
 
-  //! signInWithGoogle
+  //signInWithGoogle
   const handlerSignInWithGoogle = () => {
     signInWithGoogle()
       .then((result) => {
