@@ -157,6 +157,7 @@ const Navbar = () => {
                     Food Requests
                   </NavLink>
                 </li>
+                {/* logout */}
                 <li>
                   <button
                     onClick={logoutUser}
