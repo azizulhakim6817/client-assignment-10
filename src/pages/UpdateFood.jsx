@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
-import Swal from "sweetalert2";
-import { AuthContext } from "./../context/AuthContext";
 import { use } from "react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router";
+import Swal from "sweetalert2";
+import { AuthContext } from "../context/AuthContext";
 
 const ManageMyFoods = () => {
   const { user } = use(AuthContext);

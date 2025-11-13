@@ -8,8 +8,8 @@ import FoodDetails from "./../pages/FoodDetails";
 import ProtectedRoute from "./ProtectedRoute";
 import AddFood from "./../pages/AddFood";
 import AvailableFoods from "./../pages/AvailableFoods";
-import MyFoodRquests from "./../pages/MyFoodRquests";
 import ManageMyFoods from './../pages/ManageMyFoods';
+import FoodRequestsTable from "../pages/FoodRequestsTable ";
 
 const route = createBrowserRouter([
   {
@@ -44,10 +44,10 @@ const route = createBrowserRouter([
         ),
       },
       {
-        path: "my-food-rquests",
+        path: "food-requests-table",
         element: (
           <ProtectedRoute>
-            <MyFoodRquests />
+            <FoodRequestsTable />
           </ProtectedRoute>
         ),
       },

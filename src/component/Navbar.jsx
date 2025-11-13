@@ -150,7 +150,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <NavLink
-                    to="my-food-rquests"
+                    to="food-requests-table"
                     className="font-semibold flex justify-start gap-2 items-center"
                   >
                     <FaRegWindowRestore size={16} className="text-black" /> My
