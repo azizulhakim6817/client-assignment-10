@@ -7,7 +7,7 @@ const CalendarIcon = ({ value, onChange }) => {
 
   const handleChange = (date) => {
     setSelectedDate(date);
-    onChange(date); // pass date back to parent
+    onChange(date); 
   };
 
   return (
