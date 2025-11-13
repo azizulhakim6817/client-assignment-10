@@ -19,7 +19,7 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  //* creaete register user-------------
+  //! creaete register user----
   const createUser = (email, password, photoURL, displayName) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
