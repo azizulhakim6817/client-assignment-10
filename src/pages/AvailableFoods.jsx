@@ -52,6 +52,7 @@ const AvailableFoods = () => {
               <span className="font-semibold">Location:</span>{" "}
               {food.pickupLocation}
             </p>
+            {/* single food */}
             <Link
               to={`/food-details/${food._id}`}
               className="block text-center bg-yellow-400 font-semibold py-2 rounded hover:bg-orange-700 hover:text-white"
